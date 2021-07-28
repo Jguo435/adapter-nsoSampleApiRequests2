@@ -1,0 +1,1410 @@
+{
+  "id": "@itentialopensource/adapter-nsoSampleApiRequests2",
+  "type": "Adapter",
+  "export": "NsoSampleApiRequests2",
+  "title": "NsoSampleApiRequests2",
+  "src": "adapter.js",
+  "roles": [
+    "admin"
+  ],
+  "methods": [
+    {
+      "name": "updateAdapterConfiguration",
+      "summary": "Updates the adapter configuration",
+      "description": "Updates the adapter configuration file with the provided changes",
+      "input": [
+        {
+          "name": "configFile",
+          "type": "string",
+          "info": "The name of the file to change",
+          "required": true,
+          "schema": {
+            "title": "configFile",
+            "type": "string"
+          }
+        },
+        {
+          "name": "changes",
+          "type": "object",
+          "info": "JSON object containing the configuration changes",
+          "required": true,
+          "schema": {
+            "title": "changes",
+            "type": "object"
+          }
+        },
+        {
+          "name": "entity",
+          "type": "string",
+          "info": "The entity in which the changes are being made",
+          "required": false,
+          "schema": {
+            "title": "entity",
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "info": "The type of file to change - action, schema, or mock",
+          "required": false,
+          "schema": {
+            "title": "type",
+            "type": "string"
+          }
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "info": "The action to be changed",
+          "required": false,
+          "schema": {
+            "title": "action",
+            "type": "string"
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/updateAdapterConfiguration"
+      },
+      "task": true
+    },
+    {
+      "name": "findPath",
+      "summary": "Provides the ability to see if a particular API path is supported by the adapter",
+      "description": "Provides the ability to see if a particular API path is supported by the adapter",
+      "input": [
+        {
+          "name": "apiPath",
+          "type": "string",
+          "info": "The API Path you want to check - make sure to not include base path and version",
+          "description": "The API Path you want to check - make sure to not include base path and version",
+          "schema": {
+            "title": "apiPath",
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/findPath"
+      },
+      "task": true
+    },
+    {
+      "name": "troubleshoot",
+      "summary": "Runs troubleshoot script for adapter",
+      "description": "Runs troubleshoot script for adapter",
+      "input": [
+        {
+          "name": "props",
+          "type": "object",
+          "info": "Object containing configuration, healthcheck and auth properties {'connProps':{'host': 'api.service.com', 'base_path': '/', 'protocol': 'http', 'port': 443, 'version': 'v1'},'healthCheckEndpoint': '/healthcheck', 'auth': {'auth_method': 'no authentication', 'username': 'username', 'password': 'password'}}",
+          "required": true,
+          "schema": {
+            "title": "props",
+            "type": "object"
+          }
+        },
+        {
+          "name": "persistFlag",
+          "type": "boolean",
+          "info": "Whether the input properties should be saved",
+          "required": true
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing the test results",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/troubleshoot"
+      },
+      "task": true
+    },
+    {
+      "name": "runHealthcheck",
+      "summary": "Runs healthcheck script for adapter",
+      "description": "Runs healthcheck script for adapter",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "boolean",
+        "description": "Whether healthcheck passed or failed"
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/runHealthcheck"
+      },
+      "task": true
+    },
+    {
+      "name": "runConnectivity",
+      "summary": "Runs connectivity check script for adapter",
+      "description": "Runs connectivity check script for adapter",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing the test results",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/runConnectivity"
+      },
+      "task": true
+    },
+    {
+      "name": "runBasicGet",
+      "summary": "Runs basicGet script for adapter",
+      "description": "Runs basicGet script for adapter",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing the test results",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/runBasicGet"
+      },
+      "task": true
+    },
+    {
+      "name": "suspend",
+      "summary": "Suspends the adapter",
+      "description": "Suspends the adapter",
+      "input": [
+        {
+          "name": "mode",
+          "type": "enum",
+          "enumerals": [
+            "pause",
+            "error"
+          ],
+          "info": "How incoming requests are handled. Defaults to 'pause'",
+          "description": "How incoming requests are handled. Defaults to 'pause'",
+          "schema": {
+            "title": "mode",
+            "type": "string"
+          },
+          "required": false
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing the adapter suspended status",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/suspend"
+      },
+      "task": true
+    },
+    {
+      "name": "unsuspend",
+      "summary": "Unsuspends the adapter",
+      "description": "Unsuspends the adapter",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing the adapter suspended status",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/unsuspend"
+      },
+      "task": true
+    },
+    {
+      "name": "getQueue",
+      "summary": "Return the requests that are waiting in the queue if throttling is enabled",
+      "description": "Return the requests that are waiting in the queue if throttling is enabled",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing the adapter queue",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/getQueue"
+      },
+      "task": true
+    },
+    {
+      "name": "genericAdapterRequest",
+      "summary": "Makes the requested generic call",
+      "description": "Makes the requested generic call",
+      "input": [
+        {
+          "name": "uriPath",
+          "type": "string",
+          "info": "the path of the api call - do not include the host, port, base path or version",
+          "description": "the path of the api call",
+          "schema": {
+            "title": "uriPath",
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "restMethod",
+          "type": "string",
+          "info": "the rest method (GET, POST, PUT, PATCH, DELETE)",
+          "description": "the rest method (GET, POST, PUT, PATCH, DELETE)",
+          "schema": {
+            "title": "restMethod",
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "queryData",
+          "type": "object",
+          "info": "the query parameters to be put on the url (optional)",
+          "description": "the query parameters to be put on the url (optional)",
+          "schema": {
+            "title": "queryData",
+            "type": "object"
+          },
+          "required": false
+        },
+        {
+          "name": "requestBody",
+          "type": "object",
+          "info": "the payload to be sent with the request (optional)",
+          "description": "the payload to be sent with the request (optional)",
+          "schema": {
+            "title": "requestBody",
+            "type": "object"
+          },
+          "required": false
+        },
+        {
+          "name": "addlHeaders",
+          "type": "object",
+          "info": "additional headers to be put on the call (optional)",
+          "description": "additional headers to be put on the call (optional)",
+          "schema": {
+            "title": "addlHeaders",
+            "type": "object"
+          },
+          "required": false
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/genericAdapterRequest"
+      },
+      "task": true
+    },
+    {
+      "name": "step0CreateaDeviceintheCDB",
+      "summary": "Step 0. Create a Device in the CDB",
+      "description": "Update the Payload with correct info. Sample XML can be used from Get on existing device or using commit dry run on CLI. Device names, NED-ID, Address and Ports will likely be different depending on your environment.",
+      "input": [
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"name\": \"string\", \"address\": \"string\", \"port\": 123, \"authgroup\": \"string\", \"device-type\": {\"cli\": {\"ned-id\": \"string\"}}, \"state\": {\"admin-state\": \"string\"}}",
+          "required": true,
+          "schema": {
+            "title": "device",
+            "required": [
+              "name",
+              "address",
+              "port",
+              "authgroup",
+              "device-type",
+              "state"
+            ],
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "address": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              },
+              "authgroup": {
+                "type": "string"
+              },
+              "device-type": {
+                "title": "device-type",
+                "required": [
+                  "cli"
+                ],
+                "type": "object",
+                "properties": {
+                  "cli": {
+                    "title": "cli",
+                    "required": [
+                      "ned-id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "ned-id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "state": {
+                "title": "state",
+                "required": [
+                  "admin-state"
+                ],
+                "type": "object",
+                "properties": {
+                  "admin-state": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/step0CreateaDeviceintheCDB"
+      },
+      "task": true
+    },
+    {
+      "name": "step1SSHFetchHostKeysDevice",
+      "summary": "Step 1. SSH Fetch-Host-Keys Device",
+      "description": "Step 1. SSH Fetch-Host-Keys Device",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/step1SSHFetchHostKeysDevice"
+      },
+      "task": true
+    },
+    {
+      "name": "step2SyncFromDevice",
+      "summary": "Step 2. Sync-from Device",
+      "description": "Step 2. Sync-from Device",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/step2SyncFromDevice"
+      },
+      "task": true
+    },
+    {
+      "name": "deleteadevicefromCDBDeviceList",
+      "summary": "Delete a device from CDB Device List",
+      "description": "Delete a device from CDB Device List",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/deleteadevicefromCDBDeviceList"
+      },
+      "task": true
+    },
+    {
+      "name": "createaDNSServerConfigurationTemplate",
+      "summary": "1. Create a DNS Server Configuration Template",
+      "description": "sample CLI to do the same:\ndevices template Standard_DNS_Servers\nned-id cisco-ios-cli-6.42\nconfi\nip name-server name-server-list 8.8.8.8\nexit\nexit\nexit\nned-id cisco-nx-cli-5.13 config\nip name-server servers 8.8.8.8",
+      "input": [
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"template\": {\"name\": \"string\", \"ned-id\": [{\"id\": \"string\", \"config\": {\"ip\": {\"name-server\": {\"servers\": \"string\", \"name-server-list\": {\"address\": \"string\"}}}}}]}}",
+          "required": true,
+          "schema": {
+            "title": "devices",
+            "required": [
+              "template"
+            ],
+            "type": "object",
+            "properties": {
+              "template": {
+                "title": "template",
+                "required": [
+                  "name",
+                  "ned-id"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "ned-id": {
+                    "type": "array",
+                    "items": {
+                      "title": "ned-id",
+                      "required": [
+                        "id",
+                        "config"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "config": {
+                          "title": "config1",
+                          "required": [
+                            "ip"
+                          ],
+                          "type": "object",
+                          "properties": {
+                            "ip": {
+                              "title": "ip3",
+                              "required": [
+                                "name-server"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "name-server": {
+                                  "title": "name-server",
+                                  "required": [
+                                    "servers",
+                                    "name-server-list"
+                                  ],
+                                  "type": "object",
+                                  "properties": {
+                                    "servers": {
+                                      "type": "string"
+                                    },
+                                    "name-server-list": {
+                                      "title": "name-server-list",
+                                      "type": "object",
+                                      "properties": {
+                                        "address": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/createaDNSServerConfigurationTemplate"
+      },
+      "task": true
+    },
+    {
+      "name": "applyDNSServerDeviceTemplate",
+      "summary": "2. Apply DNS Server Device Template",
+      "description": "2. Apply DNS Server Device Template",
+      "input": [
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"template-name\": \"string\"}",
+          "required": true,
+          "schema": {
+            "title": "input",
+            "required": [
+              "template-name"
+            ],
+            "type": "object",
+            "properties": {
+              "template-name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/applyDNSServerDeviceTemplate"
+      },
+      "task": true
+    },
+    {
+      "name": "singleDeviceConfigShowdevicesdeviceDEVICENAME",
+      "summary": "Single Device Config - Show devices device DEVICENAME",
+      "description": "Single Device Config - Show devices device DEVICENAME",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/singleDeviceConfigShowdevicesdeviceDEVICENAME"
+      },
+      "task": true
+    },
+    {
+      "name": "allDevicesinDeviceListShowRunningConfigDevicesDevice",
+      "summary": "All Devices in Device List: Show Running-config Devices Device",
+      "description": "Note: This can be a very large payload, since it is sending the parsed running config of every single device in the device list, and the NSO application configuration.",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/allDevicesinDeviceListShowRunningConfigDevicesDevice"
+      },
+      "task": true
+    },
+    {
+      "name": "singleDeviceHWSWPlatformInfo",
+      "summary": "Single Device HW / SW Platform Info",
+      "description": "Single Device HW / SW Platform Info",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/singleDeviceHWSWPlatformInfo"
+      },
+      "task": true
+    },
+    {
+      "name": "showinterfaces",
+      "summary": "show interfaces",
+      "description": "show interfaces",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/showinterfaces"
+      },
+      "task": true
+    },
+    {
+      "name": "showinterfaceeth00",
+      "summary": "show interface eth 0/0",
+      "description": "show interface eth 0/0",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/showinterfaceeth00"
+      },
+      "task": true
+    },
+    {
+      "name": "addipaddresstointerface",
+      "summary": "add ip address to interface",
+      "description": "add ip address to interface",
+      "input": [
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"address\": {\"primary\": {\"address\": \"string\", \"mask\": \"string\"}}}",
+          "required": true,
+          "schema": {
+            "title": "ip",
+            "required": [
+              "address"
+            ],
+            "type": "object",
+            "properties": {
+              "address": {
+                "title": "address",
+                "required": [
+                  "primary"
+                ],
+                "type": "object",
+                "properties": {
+                  "primary": {
+                    "title": "primary",
+                    "required": [
+                      "address",
+                      "mask"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      },
+                      "mask": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/addipaddresstointerface"
+      },
+      "task": true
+    },
+    {
+      "name": "removeSNMPCommunityStringfromDevice",
+      "summary": "Remove SNMP Community String from Device",
+      "description": "Remove SNMP Community String from Device",
+      "input": [
+        {
+          "name": "dryRun",
+          "type": "string",
+          "info": ": string",
+          "required": true,
+          "schema": {
+            "title": "dryRun",
+            "type": "string"
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/removeSNMPCommunityStringfromDevice"
+      },
+      "task": true
+    },
+    {
+      "name": "addSNMPCommunityString",
+      "summary": "Add SNMP Community String",
+      "description": "Add SNMP Community String",
+      "input": [
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"snmp-server\": {\"community\": {\"name\": \"string\"}}}",
+          "required": true,
+          "schema": {
+            "title": "config",
+            "required": [
+              "snmp-server"
+            ],
+            "type": "object",
+            "properties": {
+              "snmp-server": {
+                "title": "snmp-server",
+                "required": [
+                  "community"
+                ],
+                "type": "object",
+                "properties": {
+                  "community": {
+                    "title": "community",
+                    "required": [
+                      "name"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/addSNMPCommunityString"
+      },
+      "task": true
+    },
+    {
+      "name": "removeIPAddressFromInterface",
+      "summary": "Remove IP Address From Interface",
+      "description": "Remove IP Address From Interface",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/removeIPAddressFromInterface"
+      },
+      "task": true
+    },
+    {
+      "name": "commitDryRunoutformatnative",
+      "summary": "Commit Dry-run outformat native",
+      "description": "This is using an example for an IOS interface, with the configuration in the payload, but could be any config. The key thing is having the query params ?dry-run=native so NSO knows to not commit it and to respond back with the dry-run data in CLI format.",
+      "input": [
+        {
+          "name": "dryRun",
+          "type": "string",
+          "info": ": string",
+          "required": true,
+          "schema": {
+            "title": "dryRun",
+            "type": "string"
+          }
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"address\": {\"primary\": {\"address\": \"string\", \"mask\": \"string\"}}}",
+          "required": true,
+          "schema": {
+            "title": "ip",
+            "required": [
+              "address"
+            ],
+            "type": "object",
+            "properties": {
+              "address": {
+                "title": "address",
+                "required": [
+                  "primary"
+                ],
+                "type": "object",
+                "properties": {
+                  "primary": {
+                    "title": "primary",
+                    "required": [
+                      "address",
+                      "mask"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      },
+                      "mask": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/commitDryRunoutformatnative"
+      },
+      "task": true
+    },
+    {
+      "name": "commitDryRunRemoveIPaddressfrominterface",
+      "summary": "Commit-Dry Run Remove IP address from interface",
+      "description": "Commit-Dry Run Remove IP address from interface",
+      "input": [
+        {
+          "name": "dryRun",
+          "type": "string",
+          "info": ": string",
+          "required": true,
+          "schema": {
+            "title": "dryRun",
+            "type": "string"
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/commitDryRunRemoveIPaddressfrominterface"
+      },
+      "task": true
+    },
+    {
+      "name": "configureDNSServerComplianceReport",
+      "summary": "Configure DNS Server Compliance Report",
+      "description": "This compliance report uses the device config template Standard_DNS_Servers to see if the device has a DNS server of 8.8.8.8, only for IOS devices. If non-IOS devices are applied, they are ignored.",
+      "input": [
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"reports\": {\"report\": {\"name\": \"string\", \"compare-template\": {\"template-name\": \"string\", \"device-group\": \"string\"}}}}",
+          "required": true,
+          "schema": {
+            "title": "compliance",
+            "required": [
+              "reports"
+            ],
+            "type": "object",
+            "properties": {
+              "reports": {
+                "title": "reports",
+                "required": [
+                  "report"
+                ],
+                "type": "object",
+                "properties": {
+                  "report": {
+                    "title": "report",
+                    "required": [
+                      "name",
+                      "compare-template"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "compare-template": {
+                        "title": "compare-template",
+                        "required": [
+                          "template-name",
+                          "device-group"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "template-name": {
+                            "type": "string"
+                          },
+                          "device-group": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/configureDNSServerComplianceReport"
+      },
+      "task": true
+    },
+    {
+      "name": "runComplianceReport",
+      "summary": "Run Compliance Report",
+      "description": "Run Compliance Report",
+      "input": [
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"outformat\": \"string\"}",
+          "required": true,
+          "schema": {
+            "title": "input1",
+            "required": [
+              "outformat"
+            ],
+            "type": "object",
+            "properties": {
+              "outformat": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/runComplianceReport"
+      },
+      "task": true
+    },
+    {
+      "name": "listDeviceGroups",
+      "summary": "List Device Groups",
+      "description": "List Device Groups",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/listDeviceGroups"
+      },
+      "task": true
+    },
+    {
+      "name": "listDeviceSingleDeviceGroupDetails",
+      "summary": "List Device Single Device Group Details",
+      "description": "List Device Single Device Group Details",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/listDeviceSingleDeviceGroupDetails"
+      },
+      "task": true
+    },
+    {
+      "name": "createServiceInstanceforSingleDevice",
+      "summary": "Create Service Instance for Single Device",
+      "description": "Creates a service and applies the corresponding template. In this case the service uses an IP address leaf input to build snmp-server config and apply to the device.\nCLI to do the same:\nadmin@ncs(config)# simple-sample-snmp-server-service first_service_instance device ios0 dummy 10.0.0.0",
+      "input": [
+        {
+          "name": "body",
+          "type": "object",
+          "info": ": {\"name\": \"string\", \"device\": \"string\", \"dummy\": \"string\"}",
+          "required": true,
+          "schema": {
+            "title": "simple-sample-snmp-server-service",
+            "required": [
+              "name",
+              "device",
+              "dummy"
+            ],
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "device": {
+                "type": "string"
+              },
+              "dummy": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "POST",
+        "path": "/createServiceInstanceforSingleDevice"
+      },
+      "task": true
+    },
+    {
+      "name": "getListofServiceInstancesforaService",
+      "summary": "Get List of Service Instances for a Service",
+      "description": "Note: this will only have data if service instances already exist.\nShows all service instances. In this case we have just one.\nCLI version:\nadmin@ncs# show running-config simple-sample-snmp-server-service\nsimple-sample-snmp-server-service first_service_instance\n device [ ios0 ]\n dummy  10.0.0.0",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/getListofServiceInstancesforaService"
+      },
+      "task": true
+    },
+    {
+      "name": "getServiceInfoForSingleServiceInstance",
+      "summary": "Get Service Info For Single Service Instance",
+      "description": "Note: this will only have data if service instances already exist.\nCLI version to do the same:\nadmin@ncs# show running-config simple-sample-snmp-server-service first_service_instance",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/getServiceInfoForSingleServiceInstance"
+      },
+      "task": true
+    },
+    {
+      "name": "removeDevicefromService",
+      "summary": "Remove Device from Service",
+      "description": "This will remove any configuration template based on the inputs stored in the service.\nCLI way of doing the same thing:\nno simple-sample-snmp-server-service first_service_instance",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/removeDevicefromService"
+      },
+      "task": true
+    },
+    {
+      "name": "rootLevelNSOJSONReturned",
+      "summary": "Root Level NSO JSON Returned",
+      "description": "Root Level NSO JSON Returned",
+      "input": [],
+      "output": {
+        "name": "result",
+        "type": "object",
+        "description": "A JSON Object containing status, code and the result",
+        "schema": {
+          "title": "result",
+          "type": "object"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "route": {
+        "verb": "GET",
+        "path": "/rootLevelNSOJSONReturned"
+      },
+      "task": true
+    }
+  ],
+  "views": []
+}
